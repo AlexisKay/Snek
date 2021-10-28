@@ -5,10 +5,10 @@ from pygame.constants import KEYDOWN, K_a
 
 pygame.init()
 
-snekColor=(58,68,84)
+snekColor=(9, 255, 0)
 white=(255,255,255)
 black=(0,0,0)
-red=(255,0,0)
+red=(227, 5, 49)
 green=(0,255,0)
 yellow=(225,225,102)
 blue=(50,153,213)
@@ -19,8 +19,8 @@ SnakeB = 10
 SnakeSpeed = 15
 
 clock=pygame.time.Clock()
-font_style = pygame.font.SysFont("bahnschrift", 25)
-score_font = pygame.font.SysFont("comicsansms",35)
+font_style = pygame.font.SysFont("helvetica", 25)
+score_font = pygame.font.SysFont("helvetica",35)
 
 
 dis=pygame.display.set_mode((wHeight, wWidth))
@@ -28,12 +28,12 @@ pygame.display.set_caption('Snek - AlexisKay')
 
 
 def Score(score):
-    value=score_font.render("Score: " +str(score), True, yellow)
-    dis.blit(value,[0,0])
+    value=score_font.render("Score: " +str(score), True, white)
+    dis.blit(value,[wWidth/3,0])
 
 def Snek(SnakeB, snakeList):
     for x in snakeList:
-        pygame.draw.rect(dis,black,[x[0],x[1],SnakeB,SnakeB])
+        pygame.draw.rect(dis,snekColor,[x[0],x[1],SnakeB,SnakeB])
 
 
 
@@ -64,7 +64,7 @@ def GameLoop():
     while not game_over:
 
         while game_close==True:
-            dis.fill(white)
+            dis.fill(black)
             message("You Lost - press 'Q' to quit, or 'C' to play again", red)
             Score(snakeLength-1)
             pygame.display.update()
@@ -99,8 +99,8 @@ def GameLoop():
 
         x1 += x1dif
         y1 += y1dif
-        dis.fill(white)
-        pygame.draw.rect(dis, blue, [foodx, foody, SnakeB, SnakeB])
+        dis.fill(black)
+        pygame.draw.rect(dis, red, [foodx, foody, SnakeB, SnakeB])
         snakeHead =[]
         snakeHead.append(x1)
         snakeHead.append(y1)
